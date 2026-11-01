@@ -1,0 +1,731 @@
+/* ==========================================================================
+   Base Styles & Typography
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #1877f2;
+  --primary-hover: #166fe5;
+  --primary-light: rgba(24, 119, 242, 0.08);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --bg-gradient: #f8fafc;
+  --radius-card: 16px;
+  --radius-btn: 10px;
+  --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 20px 30px -10px rgba(15, 23, 42, 0.12), 0 10px 15px -5px rgba(15, 23, 42, 0.06);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-gradient);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Scroll Progress Indicator
+   ========================================================================== */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6, #6366f1);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+/* ==========================================================================
+   Layout Containers (Centered, Max Width ~950px)
+   ========================================================================== */
+.app-wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem 1.5rem;
+}
+
+/* ==========================================================================
+   Header Section
+   ========================================================================== */
+.app-header {
+  text-align: center;
+  margin-bottom: 2.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary-color);
+  background: var(--primary-light);
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  margin-bottom: 0.85rem;
+}
+
+.app-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.75px;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+
+.app-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  max-width: 580px;
+}
+
+/* ==========================================================================
+   Search Bar Section
+   ========================================================================== */
+.search-section {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.search-bar-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-subtle);
+  transition: all 0.2s ease;
+}
+
+.search-bar-wrapper:focus-within {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.15);
+}
+
+.search-icon {
+  margin-left: 1.25rem;
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.95rem 1rem 0.95rem 0.85rem;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--text-main);
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+.search-clear-btn {
+  background: none;
+  border: none;
+  margin-right: 1rem;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: color 0.15s ease;
+}
+
+.search-clear-btn:hover {
+  color: #475569;
+}
+
+.search-meta {
+  margin-top: 0.65rem;
+  padding-left: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.no-results-box {
+  width: 100%;
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius-card);
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.reset-search-btn {
+  margin-top: 1rem;
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reset-search-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* ==========================================================================
+   Single Column Gallery & Photo Cards
+   ========================================================================== */
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.photos-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 2.75rem;
+}
+
+/* Individual Photo Card */
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Image Wrapper & Responsive Image */
+.photo-image-wrapper {
+  position: relative;
+  width: 100%;
+  background-color: #f1f5f9;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.photo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.photo-image-wrapper:hover .photo-img {
+  transform: scale(1.015);
+}
+
+.image-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.photo-image-wrapper:hover .image-hover-overlay {
+  opacity: 1;
+}
+
+.preview-pill {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+/* Card Info Body */
+.photo-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem 1.75rem 1.75rem;
+  background: #ffffff;
+}
+
+/* Author Name Row */
+.photo-author-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.author-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.author-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.2px;
+}
+
+/* Minimal Black Thumbs-up Row Below Author */
+.photo-like-row {
+  display: flex;
+  align-items: center;
+}
+
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.like-btn:hover {
+  background-color: rgba(15, 23, 42, 0.05);
+}
+
+.like-btn:active {
+  transform: scale(0.95);
+}
+
+.thumbs-up-icon {
+  font-size: 1.3rem;
+  color: #0f172a; /* Simple solid black */
+  display: inline-block;
+  transform-origin: bottom center;
+  transition: transform 0.15s ease;
+}
+
+.like-btn:hover .thumbs-up-icon {
+  transform: scale(1.1);
+}
+
+/* Playful wiggle & bounce animation triggered on click */
+.anim-wiggle {
+  animation: wiggleBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes wiggleBounce {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  20% {
+    transform: scale(1.35) rotate(-18deg);
+  }
+  45% {
+    transform: scale(1.35) rotate(14deg);
+  }
+  70% {
+    transform: scale(1.15) rotate(-6deg);
+  }
+  85% {
+    transform: scale(1.05) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.like-count {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a; /* Clean black count */
+  min-width: 1ch;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   Loading Skeletons with Shimmer Effect
+   ========================================================================== */
+.skeleton-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+  width: 100%;
+}
+
+.skeleton-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 480px;
+}
+
+.skeleton-info {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skeleton-line {
+  border-radius: 6px;
+}
+
+.skeleton-author {
+  width: 35%;
+  height: 24px;
+}
+
+.skeleton-btn {
+  width: 110px;
+  height: 40px;
+  border-radius: var(--radius-btn);
+}
+
+/* Shimmer Animation */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #f1f5f9 0%,
+    #e2e8f0 50%,
+    #f1f5f9 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ==========================================================================
+   Sentinel & Status Indicators
+   ========================================================================== */
+.sentinel-element {
+  width: 100%;
+  height: 40px;
+  margin-top: 1rem;
+  pointer-events: none;
+}
+
+.gallery-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.error-box {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-card);
+  padding: 1.75rem;
+  margin: 2rem 0;
+}
+
+.error-text {
+  color: #b91c1c;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.retry-btn {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1.75rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.retry-btn:hover {
+  background-color: #b91c1c;
+}
+
+.end-box {
+  background-color: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius-card);
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 2.5rem 1.5rem;
+}
+
+/* ==========================================================================
+   Image Preview Modal
+   ========================================================================== */
+.preview-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.preview-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: scaleUp 0.2s ease-out;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.96);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.7);
+  color: #ffffff;
+  border: none;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.modal-close-btn:hover {
+  background: rgba(15, 23, 42, 0.95);
+  transform: scale(1.08);
+}
+
+.modal-image-wrapper {
+  overflow: auto;
+  max-height: 75vh;
+  background: #0b0f19;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-caption {
+  padding: 1.25rem 1.5rem;
+  background: #ffffff;
+  border-top: 1px solid var(--card-border);
+}
+
+.modal-author-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.modal-author-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 0.15rem;
+}
+
+/* ==========================================================================
+   Floating Back to Top Button
+   ========================================================================== */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2.25rem;
+  right: 2.25rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.4);
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.2s ease;
+  animation: popIn 0.2s ease-out;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.back-to-top-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(24, 119, 242, 0.5);
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 2rem 1rem 5rem 1rem;
+  }
+
+  .app-title {
+    font-size: 2.35rem;
+  }
+
+  .app-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .photos-column {
+    gap: 2rem;
+  }
+
+  .photo-card-info {
+    padding: 1.25rem;
+  }
+
+  .author-name {
+    font-size: 1.15rem;
+  }
+
+  .skeleton-image {
+    height: 320px;
+  }
+
+  .back-to-top-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .header-badge {
+    font-size: 0.7rem;
+  }
+
+  .photo-card-info {
+    padding: 1rem;
+  }
+
+  .skeleton-image {
+    height: 240px;
+  }
+}
